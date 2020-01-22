@@ -1,0 +1,16 @@
+
+syntax = "proto3";
+
+service DataComm {
+   // (Method definitions not shown)
+  rpc GetFeatures(Empty) returns (Feature) {}
+}
+
+message Empty {
+
+}
+
+message Feature {
+  float thing = 1;
+  float thing2 = 2;
+}

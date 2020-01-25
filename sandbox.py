@@ -5,13 +5,40 @@ ah good old sandbox.py :)
 #RPC server stuff
 
 import grpc
+#
+# import basic_comm_pb2
+# import basic_comm_pb2_grpc
+#
+# with grpc.insecure_channel('localhost:50051') as channel:
+#     stub = basic_comm_pb2_grpc.DataCommStub(channel)
+#     features = stub.GetFeature(new Empty())
+#
 
 import basic_comm_pb2
 import basic_comm_pb2_grpc
+import basic_comm_resources
 
-with grpc.insecure_channel('localhost:50051') as channel:
-    stub = basic_comm_pb2_grpc.DataCommStub(channel)
-    features = stub.GetFeature(new Empty())
+class DataCommServicer(basic_comm_pb2_grpc.DataCommServicer):
+    """Provides methods that implement functionality of data comm server."""
+
+    def __init__(self):
+        # self.db = basic_comm_resources.read_route_guide_database()
+        pass
+
+    def SendFeatures(self, request, context):
+        print(request.thing)
+        return 1
+
+
+
+def serve():
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    basic_comm_pb2_grpc.add_DataCommServicer_to_server(
+        DataCommServicer(), server)
+    server.add_insecure_port('[::]:50051')
+    server.start()
+    server.wait_for_termination()
+
 
 #%%
 

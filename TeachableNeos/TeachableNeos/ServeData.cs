@@ -21,23 +21,41 @@ namespace FrooxEngine.LogiX.Network
         public readonly Input<float> TestNumber;
         public readonly Input<float> TestNumber2;
 
-        public readonly Output<float> TestOutput;
+        public readonly Output<int> TestOutput;
+        public var client;
 
-        //public override void RunStartup()
-        //{
-
-        //}
+        public override void RunStartup()
+        {
+            base.RunStartup();
+            StartRPCServer();
+            //RunInBackground(() =>
+            //{
+            //    StartRPCServer();
+            //})
+        }
 
         //protected override void OnChanges()
         //{
 
         //}
 
+            private void StartRPCServer()
+        {
+            Channel channel = new Channel("127.0.0.1:50052", ChannelCredentials.Insecure);
+            this.client = new RouteGuide.RouteGuideClient(channel);
+
+            // YOUR CODE GOES HERE
+
+            channel.ShutdownAsync().Wait();
+        }
+
         protected override void OnEvaluate()
         {
             var number1 = TestNumber.EvaluateRaw();
             var number2 = TestNumber2.EvaluateRaw();
-            TestOutput.Value = number1 + number2;
+            Feature request = new Feature { thing = number1, thing2 = number2 };
+            int k = client.SendFeatures(request);
+            TestOutput.Value = k;
         }
 
         //protected override void InitializeSyncMembers()

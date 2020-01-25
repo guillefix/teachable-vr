@@ -3,11 +3,15 @@ syntax = "proto3";
 
 service DataComm {
    // (Method definitions not shown)
-  rpc SendFeatures(Feature) returns (int) {}
+  rpc SendFeatures(Feature) returns (Classification);
 }
 
-message Empty {
+//message Empty {
+//
+//}
 
+message Classification {
+    int32 k = 1;
 }
 
 message Feature {

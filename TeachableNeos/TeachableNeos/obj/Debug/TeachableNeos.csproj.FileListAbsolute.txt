@@ -191,7 +191,6 @@ C:\Users\ViveDeveloperJam\code\teachable-vr\TeachableNeos\TeachableNeos\bin\Debu
 C:\Users\ViveDeveloperJam\code\teachable-vr\TeachableNeos\TeachableNeos\bin\Debug\System.Memory.xml
 C:\Users\ViveDeveloperJam\code\teachable-vr\TeachableNeos\TeachableNeos\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\ViveDeveloperJam\code\teachable-vr\TeachableNeos\TeachableNeos\bin\Debug\Newtonsoft.Json.xml
-C:\Users\ViveDeveloperJam\code\teachable-vr\TeachableNeos\TeachableNeos\obj\Debug\TeachableNeos.csprojAssemblyReference.cache
 C:\Users\ViveDeveloperJam\code\teachable-vr\TeachableNeos\TeachableNeos\obj\Debug\TeachableNeos.csproj.CopyComplete
 C:\Users\ViveDeveloperJam\code\teachable-vr\TeachableNeos\TeachableNeos\obj\Debug\TeachableNeos.dll
 C:\Users\ViveDeveloperJam\code\teachable-vr\TeachableNeos\TeachableNeos\obj\Debug\TeachableNeos.pdb

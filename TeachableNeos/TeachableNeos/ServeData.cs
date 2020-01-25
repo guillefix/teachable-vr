@@ -11,6 +11,7 @@ using FrooxEngine;
 //using Grpc.Core.Utils;
 //using LogiX;
 using FrooxEngine.LogiX;
+using Grpc.Core;
 
 namespace FrooxEngine.LogiX.Network
 {
@@ -22,7 +23,7 @@ namespace FrooxEngine.LogiX.Network
         public readonly Input<float> TestNumber2;
 
         public readonly Output<int> TestOutput;
-        public var client;
+        public DataComm.DataCommClient client;
 
         public override void RunStartup()
         {
@@ -42,7 +43,7 @@ namespace FrooxEngine.LogiX.Network
             private void StartRPCServer()
         {
             Channel channel = new Channel("127.0.0.1:50052", ChannelCredentials.Insecure);
-            this.client = new RouteGuide.RouteGuideClient(channel);
+            this.client = new DataComm.DataCommClient(channel);
 
             // YOUR CODE GOES HERE
 
@@ -53,8 +54,9 @@ namespace FrooxEngine.LogiX.Network
         {
             var number1 = TestNumber.EvaluateRaw();
             var number2 = TestNumber2.EvaluateRaw();
-            Feature request = new Feature { thing = number1, thing2 = number2 };
-            int k = client.SendFeatures(request);
+            Feature request = new Feature { Thing = number1, Thing2 = number2 };
+            Classification c = this.client.SendFeatures(request);
+            int k = c.K;
             TestOutput.Value = k;
         }
 

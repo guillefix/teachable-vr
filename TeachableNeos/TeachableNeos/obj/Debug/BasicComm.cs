@@ -22,13 +22,14 @@ public static partial class BasicCommReflection {
   static BasicCommReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "ChBiYXNpY19jb21tLnByb3RvIgcKBUVtcHR5IigKB0ZlYXR1cmUSDQoFdGhp",
-          "bmcYASABKAISDgoGdGhpbmcyGAIgASgCMi0KCERhdGFDb21tEiEKC0dldEZl",
-          "YXR1cmVzEgYuRW1wdHkaCC5GZWF0dXJlIgBiBnByb3RvMw=="));
+          "ChBiYXNpY19jb21tLnByb3RvIhsKDkNsYXNzaWZpY2F0aW9uEgkKAWsYASAB",
+          "KAUiKAoHRmVhdHVyZRINCgV0aGluZxgBIAEoAhIOCgZ0aGluZzIYAiABKAIy",
+          "NQoIRGF0YUNvbW0SKQoMU2VuZEZlYXR1cmVzEgguRmVhdHVyZRoPLkNsYXNz",
+          "aWZpY2F0aW9uYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::Empty), global::Empty.Parser, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::Classification), global::Classification.Parser, new[]{ "K" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::Feature), global::Feature.Parser, new[]{ "Thing", "Thing2" }, null, null, null)
         }));
   }
@@ -36,11 +37,11 @@ public static partial class BasicCommReflection {
 
 }
 #region Messages
-public sealed partial class Empty : pb::IMessage<Empty> {
-  private static readonly pb::MessageParser<Empty> _parser = new pb::MessageParser<Empty>(() => new Empty());
+public sealed partial class Classification : pb::IMessage<Classification> {
+  private static readonly pb::MessageParser<Classification> _parser = new pb::MessageParser<Classification>(() => new Classification());
   private pb::UnknownFieldSet _unknownFields;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public static pb::MessageParser<Empty> Parser { get { return _parser; } }
+  public static pb::MessageParser<Classification> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public static pbr::MessageDescriptor Descriptor {
@@ -53,41 +54,55 @@ public sealed partial class Empty : pb::IMessage<Empty> {
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public Empty() {
+  public Classification() {
     OnConstruction();
   }
 
   partial void OnConstruction();
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public Empty(Empty other) : this() {
+  public Classification(Classification other) : this() {
+    k_ = other.k_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public Empty Clone() {
-    return new Empty(this);
+  public Classification Clone() {
+    return new Classification(this);
+  }
+
+  /// <summary>Field number for the "k" field.</summary>
+  public const int KFieldNumber = 1;
+  private int k_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int K {
+    get { return k_; }
+    set {
+      k_ = value;
+    }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
-    return Equals(other as Empty);
+    return Equals(other as Classification);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public bool Equals(Empty other) {
+  public bool Equals(Classification other) {
     if (ReferenceEquals(other, null)) {
       return false;
     }
     if (ReferenceEquals(other, this)) {
       return true;
     }
+    if (K != other.K) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override int GetHashCode() {
     int hash = 1;
+    if (K != 0) hash ^= K.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -101,6 +116,10 @@ public sealed partial class Empty : pb::IMessage<Empty> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void WriteTo(pb::CodedOutputStream output) {
+    if (K != 0) {
+      output.WriteRawTag(8);
+      output.WriteInt32(K);
+    }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
@@ -109,6 +128,9 @@ public sealed partial class Empty : pb::IMessage<Empty> {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int CalculateSize() {
     int size = 0;
+    if (K != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(K);
+    }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
     }
@@ -116,9 +138,12 @@ public sealed partial class Empty : pb::IMessage<Empty> {
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  public void MergeFrom(Empty other) {
+  public void MergeFrom(Classification other) {
     if (other == null) {
       return;
+    }
+    if (other.K != 0) {
+      K = other.K;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -131,6 +156,10 @@ public sealed partial class Empty : pb::IMessage<Empty> {
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
+        case 8: {
+          K = input.ReadInt32();
+          break;
+        }
       }
     }
   }

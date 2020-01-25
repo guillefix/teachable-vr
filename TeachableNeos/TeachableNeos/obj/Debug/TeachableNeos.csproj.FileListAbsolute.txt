@@ -97,3 +97,4 @@ C:\Users\guill\Documents\code\teachable-vr\TeachableNeos\TeachableNeos\bin\Debug
 C:\Users\guill\Documents\code\teachable-vr\TeachableNeos\TeachableNeos\obj\Debug\TeachableNeos.csproj.CopyComplete
 C:\Users\guill\Documents\code\teachable-vr\TeachableNeos\TeachableNeos\obj\Debug\TeachableNeos.dll
 C:\Users\guill\Documents\code\teachable-vr\TeachableNeos\TeachableNeos\obj\Debug\TeachableNeos.pdb
+C:\Users\guill\Documents\code\teachable-vr\TeachableNeos\TeachableNeos\bin\Debug\NYoutubeDL.dll

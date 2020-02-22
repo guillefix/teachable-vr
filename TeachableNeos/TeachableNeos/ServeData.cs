@@ -24,6 +24,7 @@ namespace FrooxEngine.LogiX.Network
 
         public readonly Output<int> TestOutput;
         public DataComm.DataCommClient client;
+        public Channel channel;
 
         public override void RunStartup()
         {
@@ -42,12 +43,9 @@ namespace FrooxEngine.LogiX.Network
 
             private void StartRPCServer()
         {
-            Channel channel = new Channel("127.0.0.1:50052", ChannelCredentials.Insecure);
+            channel = new Channel("127.0.0.1:50052", ChannelCredentials.Insecure);
             this.client = new DataComm.DataCommClient(channel);
 
-            // YOUR CODE GOES HERE
-
-            channel.ShutdownAsync().Wait();
         }
 
         protected override void OnEvaluate()
@@ -107,5 +105,10 @@ namespace FrooxEngine.LogiX.Network
         //{
 
         //}
+
+        public override void RunOnDestroying()
+        {
+            channel.ShutdownAsync().Wait();
+        }
     }
 }

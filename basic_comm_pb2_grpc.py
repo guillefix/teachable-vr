@@ -14,10 +14,10 @@ class DataCommStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.GetFeatures = channel.unary_unary(
-        '/DataComm/GetFeatures',
-        request_serializer=basic__comm__pb2.Empty.SerializeToString,
-        response_deserializer=basic__comm__pb2.Feature.FromString,
+    self.SendFeatures = channel.unary_unary(
+        '/DataComm/SendFeatures',
+        request_serializer=basic__comm__pb2.Feature.SerializeToString,
+        response_deserializer=basic__comm__pb2.Classification.FromString,
         )
 
 
@@ -25,7 +25,7 @@ class DataCommServicer(object):
   # missing associated documentation comment in .proto file
   pass
 
-  def GetFeatures(self, request, context):
+  def SendFeatures(self, request, context):
     """(Method definitions not shown)
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -35,10 +35,10 @@ class DataCommServicer(object):
 
 def add_DataCommServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'GetFeatures': grpc.unary_unary_rpc_method_handler(
-          servicer.GetFeatures,
-          request_deserializer=basic__comm__pb2.Empty.FromString,
-          response_serializer=basic__comm__pb2.Feature.SerializeToString,
+      'SendFeatures': grpc.unary_unary_rpc_method_handler(
+          servicer.SendFeatures,
+          request_deserializer=basic__comm__pb2.Feature.FromString,
+          response_serializer=basic__comm__pb2.Classification.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

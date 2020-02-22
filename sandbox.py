@@ -5,18 +5,13 @@ ah good old sandbox.py :)
 #RPC server stuff
 
 import grpc
-#
-# import basic_comm_pb2
-# import basic_comm_pb2_grpc
-#
-# with grpc.insecure_channel('localhost:50051') as channel:
-#     stub = basic_comm_pb2_grpc.DataCommStub(channel)
-#     features = stub.GetFeature(new Empty())
-#
+from concurrent import futures
+# python -m grpc_tools.protoc -I./protos --python_out=. --grpc_python_out=. ./protos/basic_comm.proto
 
 import basic_comm_pb2
+from basic_comm_pb2 import Classification
 import basic_comm_pb2_grpc
-import basic_comm_resources
+# import basic_comm_resources
 
 class DataCommServicer(basic_comm_pb2_grpc.DataCommServicer):
     """Provides methods that implement functionality of data comm server."""
@@ -27,7 +22,8 @@ class DataCommServicer(basic_comm_pb2_grpc.DataCommServicer):
 
     def SendFeatures(self, request, context):
         print(request.thing)
-        return 1
+        response = Classification(k=int(request.thing+request.thing2))
+        return response
 
 
 
@@ -35,10 +31,11 @@ def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     basic_comm_pb2_grpc.add_DataCommServicer_to_server(
         DataCommServicer(), server)
-    server.add_insecure_port('[::]:50051')
+    server.add_insecure_port('[::]:50052')
     server.start()
     server.wait_for_termination()
 
+serve()
 
 #%%
 
